@@ -1,0 +1,135 @@
+{% extends 'basepage.html' %}
+{% load staticfiles %}
+{% block title %}二手交易{% endblock %}
+
+{% block css %}
+<link rel="stylesheet" href="{% static 'dist/css/skins/_all-skins.min.css' %}">
+<style>
+    .list-style{
+      border-top:1px solid #7c7c7c;
+      height: 110px;
+    }
+    .title{
+      font-size:23px;
+      font-weight:bold;
+      color:#323d42;
+    }
+    .content{
+      font-size:14px;
+      color:#7c7c7c;
+    }
+    .button {
+      background-color: #dff0d8;
+      margin-top: 8px;
+      padding: 3px 32px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 16px;
+    }
+    .btn-success{
+      background-color:#333;
+      border-color:#333;
+    }
+
+</style>
+
+{% endblock %}
+
+{% block content %}
+    <section class="content-header">
+      <ol class="breadcrumb">
+        <li><a href="{% url 'index' %}">主页</a></li>
+        <li class="active">二手交易</li>
+      </ol>
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+    <div class="row">
+    <div class="col-xs-10 col-md-offset-1">
+
+      <div class="box">
+        <div class="box-body">
+          <div class="col-md-12">
+            <div class="col-md-2">
+              <div class="title"style="font-size: 30px;color: #333;font-weight:bold;height: 80px;">
+                二手交易
+              </div>
+            </div>
+            <div class="col-md-10">
+              <div class="button" type="button"><a href="{% url 'salebuy:salebuy_create' %}">发布信息</a>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-12">
+            {% for sale in sales %}
+            <div class="list-style">
+              <div class="col-md-2">
+                <img style="margin-top:10%;width:auto;height:auto;max-width:80%;max-height:80%;" src="{% static 'images/1.jpg' %}">
+              </div>
+              <div class="col-md-10">
+                  <div class="title"><a href="{% url 'salebuy:salebuy_detail' sale.id %}">{{ sale.title }}</a></div>
+                <div class="content">
+                  信息类型：{{ sale.type }}&nbsp;&nbsp;发布人:{{ sale.author }}<br/>
+                  发布日期：{{ sale.created }}&nbsp;&nbsp;校区：{{ sale.location }}
+                </div>
+              </div>
+            </div>
+            {% empty %}
+              暂无数据！
+            {% endfor %}
+          </div>
+          <div class="col-md-12" align="center">
+            <!-- 页码导航 -->
+            <div class="pagination row">
+              <div class="m-auto">
+                  <span class="step-links">
+                      <!-- 如果不是第一页，则显示上翻按钮 -->
+                      {% if sales.has_previous %}
+                          <a href="?page=1" class="btn btn-success">
+                              &laquo; 1
+                          </a>
+                          <span>...</span>
+                          <a href="?page={{ sales.previous_page_number }}"
+                             class="btn btn-secondary"
+                          >
+                              {{ sales.previous_page_number }}
+                          </a>
+                      {% endif %}
+
+                      <!-- 当前页面 -->
+                      <span class="current btn btn-danger btn-lg">
+                          {{ sales.number }}
+                      </span>
+
+                      <!-- 如果不是最末页，则显示下翻按钮 -->
+                      {% if sales.has_next %}
+                          <a href="?page={{ sales.next_page_number }}"
+                             class="btn btn-secondary"
+                          >
+                              {{ sales.next_page_number }}
+                          </a>
+                          <span>...</span>
+                          <a href="?page={{ sales.paginator.num_pages }}"
+                             class="btn btn-success"
+                          >
+                              {{ sales.paginator.num_pages }} &raquo;
+                          </a>
+                      {% endif %}
+                  </span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+      <!-- /.box -->
+    </div>
+
+    <!-- /.col -->
+    </div>
+    <!-- /.row -->
+    </section>
+
+{% endblock %}

@@ -1,0 +1,22 @@
+
+{% extends "message/msg_index.html" %}
+{% load static %}
+
+{% block class1 %}
+    class="active"
+{% endblock class1 %}
+
+{% block top %}
+    <div class="tap">
+        <span>系统公告</span>
+    </div>
+{% endblock top %}
+
+{% block container %}
+    <div class="row">
+        <h1 class="col-12 mt-4 mb-4">{{ sys_msg.title }}</h1></div>
+         <div class="col-12">
+            <p>{{ sys_msg.content|safe }}</p>
+        </div>
+
+{% endblock container %}

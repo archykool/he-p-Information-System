@@ -1,0 +1,15 @@
+指令：
+wget https://bootstrap.pypa.io/get-pip.py
+sudo python get-pip.py
+
+如还失败可尝试
+sudo apt-get update
+sudo apt-get upgrade
+wget https://bootstrap.pypa.io/get-pip.py
+sudo python get-pip.py
+
+之后可能因为pip安装位置导致无法使用pip指令
+进行以下指令
+which pip
+type pip
+hash -r

@@ -1,0 +1,6 @@
+question£∫No module named 'pymysql'
+
+solve£∫pip show PymySQL
+’“µΩŒª÷√∫Û
+cp -r python2.7/dist-packages/pymysql/ python3.5/dist-packages
+

@@ -1,0 +1,84 @@
+{% extends 'user/usercenter-base.html' %}{% load staticfiles %}
+
+
+{% block title %} 我的帖子 {% endblock %}
+
+
+{% block custom_css %}
+<style>
+.table1_4 table {
+	width:100%;
+	margin:15px 0
+}
+
+.table1_4,.table1_4 th,.table1_4 td,.table1_4 tr
+{
+	font-size:0.95em;
+	text-align:center;
+	padding:4px;
+	border:1px solid #dddddd;
+	border-collapse:collapse
+}
+
+.table1_4 tr{
+    width: 300px;
+}
+.table1_4 th{
+    height:15px;
+}
+</style>
+{% endblock %}
+
+
+{% block custom_bread %}
+    <section>
+        <div class="wp">
+            <ul  class="crumbs">
+                <li><a href="{% url 'index' %}">首页</a>></li>
+                <li><a href="{% url 'users:user_info' %}">个人中心</a>></li>
+                <li>我的帖子</li>
+            </ul>
+        </div>
+    </section>
+{% endblock %}
+
+
+{% block custom_right_content %}
+<div class="right" style="height:1000px;">
+    <div class="personal_des Releasecont">
+        <div class="head">
+            <h1>我的帖子</h1>
+        </div>
+    </div>
+    <div class="personal_des permessage">
+        <div class="head">
+            <ul class="tab_header messagehead">
+                <li ><a href="{% url 'users:mypost_lostfound' %}">失物寻物</a> </li>
+                <li ><a href="{% url 'users:mypost_ad' %}">广告兼职</a> </li>
+                <li ><a href="{% url 'users:mypost_salebuy' %}">二手交易</a></li>
+                <li class="active"><a href="{% url 'users:mypost_seekhelp' %}">信息求助</a></li>
+            </ul>
+        </div>
+        <div class="messagelist">
+            <table class=table1_4>
+                <tr>
+                    <td style="width:20%;">帖子更新时间</td>
+                    <td style="width:35%;">帖子标题</td>
+                    <td style="width:25%;">帖子详情</td>
+                    <td style="width:10%;"></td>
+                </tr>
+                {% for seekhelp in seekhelps %}
+                <a>
+                    <th>{{ seekhelp.updated }}</th>
+                    <th><a href="{% url 'seekhelp:seekhelp_detail' seekhelp.id %}">{{ seekhelp.title }}</a></th>
+                    <th>{{ seekhelp.details|slice:'500' }}</th>
+                    <th><a href="{% url "users:update_seekhelp" seekhelp.id %}">修改</th></a>
+                </tr>
+                {% endfor %}
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+

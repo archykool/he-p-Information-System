@@ -1,0 +1,186 @@
+<!-- extends表明此页面继承自 basepage.html 文件 -->
+{% extends "basepage.html" %}{% load staticfiles %}
+
+
+<!-- 写入 basepage.html 中定义的 title -->
+{% block title %} 广告兼职-详情 {% endblock %}
+
+
+<!--写入 basepage.html 中定义的 css -->
+{% block css %}
+<style>
+    .basicinfo{
+        font-size:14px;
+        color:#7c7c7c;
+    }
+    .info{
+        height:80%;
+        padding-bottom:20%;
+        fonr-color:#333;
+        background-color:#dff0d8;
+    }
+    .aside-title::before{
+        display:inline-block;
+        margin-right:8px;content:'';
+        width:4px;height:22px;
+        vertical-align:-6px;
+        background-color:#ca0c16
+	}
+</style>
+
+<link rel="stylesheet" href="{% static 'css/detail.css'%}">
+<link rel="stylesheet" href="{% static 'css/sandalstrap.min.css'%}">
+<link rel="stylesheet" href="{% static 'css/float.css'%}">
+{% endblock %}
+
+<!-- 写入 basepage.html 中定义的 content -->
+{% block content %}
+<section class="content-header">
+      <ol class="breadcrumb">
+        <li><a href="{% url 'index' %}">主页</a></li>
+        <li><a href="{% url 'ad:ad_list' %}">广告兼职</a></li>
+        <li class="active">详情</li>
+      </ol>
+</section>
+
+
+<!-- 帖子详情 -->
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <div class="col-md-3">
+                <div class="aside-box" id="asideProfile" style="background:#dff0d8;padding-left:5px;">
+                    <!-- <h3 class="aside-title">个人资料</h3> -->
+                    <div class="profile-intro d-flex" style="height:25%;">
+                        <div class="avatar-box d-flex justify-content-center flex-column">
+                            <br>{{ ad.author }}
+                            <span class="csdn-tracking-statistics tracking-click" data-mod="popu_379">
+                                <a href="{% url 'chat:allfriends' %}" class="btn btn-sm btn-red-hollow attention" id="btnAttent" target="_blank">会话</a>
+                            </span>
+                        </div>
+                    </div>
+                    <center><span style="display:block;width:90%;height:1px;background-color:#323d42;"></span></center>
+                    <br>
+                    <div class="data-info d-flex item-tiling" style="height:13%;">
+                        <dl class="text-center">
+                            <dt>原创</dt>
+                            <dd><span class="count"></span></dd>
+                        </dl>
+                        <dl class="text-center">
+                            <dt>喜欢</dt>
+                            <dd><span class="count"></span></dd>
+                        </dl>
+                        <dl class="text-center">
+                            <dt>评论</dt>
+                            <dd><span class="count"></span></dd>
+                        </dl>
+                    </div>
+                    <center><span style="display:block;width:90%;height:1px;background-color:#323d42;"></span></center>
+                    <br>
+                    <div class="aside-box" id="asideNewArticle">
+                        <div class="aside-title" style="font-size:20px;">失物寻物</div>
+                        <div class="aside-content">
+                            <ul class="inf_list clearfix csdn-tracking-statistics tracking-click" data-mod="popu_382">
+                                {% for lost in losts %}
+                                <li class="clearfix">
+                                    {{ lost.type }}·<a href="{% url 'lostfound:lostfound_detail' lost.id %}">{{ lost.title }}</a>
+                                </li>
+                                {% empty %}
+                                暂时没有发布过任何信息
+                                {% endfor %}
+                            </ul>
+                        </div>
+                        <br>
+                        <br>
+                        <div class="aside-title" style="font-size:20px;">二手交易</div>
+                        <div class="aside-content">
+                            <ul class="inf_list clearfix csdn-tracking-statistics tracking-click" data-mod="popu_382">
+                                {% for sale in sales %}
+                                <li class="clearfix">
+                                    {{ sale.type }}·<a href="{% url 'salebuy:salebuy_detail' sale.id %}">{{ sale.title }}</a>
+                                </li>
+                                {% empty %}
+                                暂时没有发布过任何信息
+                                {% endfor %}
+                            </ul>
+                        </div>
+                        <br>
+                        <br>
+                        <div class="aside-title" style="font-size:20px;">广告兼职</div>
+                        <div class="aside-content">
+                            <ul class="inf_list clearfix csdn-tracking-statistics tracking-click" data-mod="popu_382">
+                                {% for ad in ads %}
+                                <li class="clearfix">
+                                    <a href="{% url 'ad:ad_detail' ad.id %}">{{ ad.title }}</a>
+                                </li>
+                                {% empty %}
+                                暂时没有发布过任何信息
+                                {% endfor %}
+                            </ul>
+                        </div>
+                        <br>
+                        <br>
+                        <div class="aside-title" style="font-size:20px;">信息求助</div>
+                        <div class="aside-content">
+                            <ul class="inf_list clearfix csdn-tracking-statistics tracking-click" data-mod="popu_382">
+                                {% for seek in seeks %}
+                                <li class="clearfix">
+                                    <a href="{% url 'seekhelp:seekhelp_detail' ad.id %}">{{ seek.title }}</a>
+                                </li>
+                                {% empty %}
+                                暂时没有发布过任何信息
+                                {% endfor %}
+                            </ul>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-9 ">
+                <div class="col-9 alert alert-success">
+                    <div class="secondtitle">{{ ad.title }}</div>
+                    <div class="basicinfo">{{ ad.created }}&nbsp;&nbsp;&nbsp;&nbsp;广告兼职</div>
+                </div>
+                <div class="col-9 info">
+                    <div class="col-md-9">
+                        <br>
+                        <div class="col-md-3"><center>发布者：</center></div>
+                        <div class="col-md-9">{{ ad.author }}</div>
+                        <br>
+                        <br>
+                        <div class="col-md-3"><center>价格：</center></div>
+                        <div class="col-md-9">{{ ad.price }}</div>
+                        <br>
+                        <br>
+                        <div class="col-md-3"><center>详细描述：</center></div>
+                        <div class="col-md-9">{{ ad.details }}</div>
+                        <br>
+                        <br>
+                        <div class="col-md-3"><center>图片：</center></div>
+                        <div class="col-md-9">
+                            <img style="width:auto;height:auto;max-width:50%;max-height:50%;" src="/media/{{ img.img_url }}"/>
+                        </div>
+                        <br>
+                        <br>
+                        <br>
+                    </div>
+                    <div class="col-md-1">
+                        <div class="box">
+                            <ul>
+                                <br>
+                                <br>
+                                <br>
+                                <br>
+                                <li class="weixin">
+                                    <div class="weixin-logo"></div>
+                                </li>
+                                <li class="idea"></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

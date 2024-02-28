@@ -1,0 +1,242 @@
+
+<!DOCTYPE html>
+{% load static %}
+<html lang="zh-cn">
+<head>
+    <title>消息</title>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta name="keywords" content="四川大学，信管，信息系统">
+
+    <link rel="stylesheet" href="{% static 'dist/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'dist/css/font-awesome.min.css' %}">
+    <link rel="stylesheet" href="{% static 'dist/css/ionicons.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/common.css' %}">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/pageSwitch.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/index.css'%}">
+{#    <link rel="stylesheet" type="text/css" href="{% static 'message/iconfont.css' %}">#}
+    <link rel="stylesheet" type="text/css" href="{% static 'message/msg_style1.css' %}" >
+    {% block style %}{% endblock %}
+    <script type="text/javascript" src="{% static 'js/vsbscreen.js'%}" id="_vsbscreen" devices="pc|pad"></script>
+    <script type="text/javascript" src="{% static 'js/counter.js'%}"></script>
+    <script type="text/javascript">_jsq_(1072,'/index.jsp',-1,1420436181)</script>
+    {% block script %}{% endblock %}
+
+    <style type="text/css">
+  		*{
+  			padding: 0;
+  			margin: 0;
+  		}
+  		.navbar-static-top{
+  			background-color:#323d42
+  		}
+  	</style>
+</head>
+<body 12="">
+  <div class="index">
+    <!-- 顶部图片与登录状态 -->
+    <div class="topBox">
+      <div class="topContainer">
+        <div class="head-right">
+          {% if request.user.is_authenticated %}
+  				<li>
+  					{{ user.username }}
+  					<a href="{% url 'users:user_info' %}">个人中心</a>
+  					<a href="{% url 'message:msg_index' %}">我的消息</a>
+  					<a href="{% url 'logout' %}">退出</a>
+  				</li>
+  				{% else %}
+  				<li>
+  				he!p&nbsp;&nbsp;
+  				<a href="{% url 'login' %}">登录&nbsp;&nbsp;</a>
+  				<a href="{% url 'register' %}">注册&nbsp;&nbsp;</a>
+  				</li>
+  				{% endif %}
+			 </div>
+       <script language="javascript" src="{% static 'js/base64.js'%}"></script>
+			 <script language="javascript" src="{% static 'js/formfunc.js'%}"></script>
+       </div>
+    </div>
+
+    <!-- 导航栏 -->
+    <nav class="navbar navbar-static-top">
+      <div class="navbar-custom-menu col-md-offset-1">
+        <ul class="nav navbar-nav">
+          <!-- Messages: style can be found in dropdown.less-->
+          <li class="dropdown user user-menu">
+            <a href="{% url 'index' %}">
+              <span class="hidden-xs">
+                <font size="4" color="white">&nbsp&nbsp主页&nbsp&nbsp</font>
+              </span>
+            </a>
+          </li>
+          <li class="dropdown user user-menu">
+            <a href="{% url 'news:lost' %}" >
+              <span class="hidden-xs">
+                <font size="4" color="white">&nbsp&nbsp失物寻物&nbsp&nbsp</font>
+              </span>
+            </a>
+          </li>
+          <li class="dropdown user user-menu">
+            <a href="{% url 'news:sale' %}" >
+              <span class="hidden-xs">
+                <font size="4" color="white">&nbsp&nbsp二手交易&nbsp&nbsp</font>
+              </span>
+            </a>
+          </li>
+          <li class="dropdown user user-menu">
+            <a href="{% url 'news:adv' %}" >
+              <span class="hidden-xs">
+                <font size="4" color="white">&nbsp&nbsp广告兼职&nbsp&nbsp</font>
+              </span>
+            </a>
+          </li>
+          <li class="dropdown user user-menu">
+            <a href="{% url 'news:seek' %}" >
+              <span class="hidden-xs">
+                <font size="4" color="white">&nbsp&nbsp信息求助&nbsp&nbsp</font>
+              </span>
+            </a>
+          </li>
+          <li class="dropdown messages-menu">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+              <span class="hidden-xs">
+                <font size="4" color="white">&nbsp&nbsp校园资讯&nbsp&nbsp</font>
+              </span>
+            </a>
+            <ul class="dropdown-menu">
+              <li class="header">
+                <a href="{% url 'news:inform' %}">教务处</a>
+              </li>
+              <li class="header">
+                <a href="{% url 'news:xuegong' %}">学工部</a>
+              </li>
+              <li class="header">
+                <a href="{% url 'news:qingchun' %}">青春川大</a>
+              </li>
+              <li class="header">
+                <a href="{% url 'news:daily' %}">常用咨询</a>
+              </li>
+            </ul>
+          </li>
+          <li class="dropdown user user-menu">
+            <a href="{% url 'news:dashboard' %}" >
+              <span class="hidden-xs">
+                <font size="4" color="white">&nbsp&nbsp数据监视&nbsp&nbsp</font>
+              </span>
+            </a>
+          </li>
+          <!-- Notifications: style can be found in dropdown.less -->
+          <!-- 用户信息: style can be found in dropdown.less -->
+
+          <!-- Control Sidebar Toggle Button -->
+        </ul>
+      </div>
+    </nav>
+     {% if user.is_authenticated %}
+         <div class="main w1200">
+			<div class="left">
+				<ul>
+					<li>
+						<a href="{% url 'systermmsg:sys_msg_list' %}" {% block class1 %} {% endblock class1 %}>
+                            <i class="icon iconfont icon-lingdang"></i>
+                            系统消息
+                        </a>
+					</li>
+{#					<li>#}
+{#						<a href="{% url 'message:msg_receive' %}" {% block class2 %} {% endblock class2 %}>#}
+{#                            <i class="icon iconfont icon-fangzidichan"></i>#}
+{#                            我收到的消息#}
+{#                        </a>#}
+{#					</li>#}
+{#                    <li>#}
+{#						<a href="{% url 'message:msg_sent' %}" {% block class3 %} {% endblock class3 %}>#}
+{#							<i class="icon iconfont icon-icon--"></i>#}
+{#							发送消息#}
+{#						</a>#}
+{#					</li>#}
+					<li>
+						<a href="{% url "message:msg_showAll" %}" {% block class4 %} {% endblock class4 %}>
+							<i class="icon iconfont icon-wenda"></i>
+							联系管理员
+						</a>
+					</li>
+					<li>
+						<a href="{% url 'chat:allfriends' %}" {% block class5 %} {% endblock class5 %}>
+							<i class="icon iconfont icon-pinglun"></i>
+							私聊
+						</a>
+					</li>
+{#					<li>#}
+{#						<a href="#" {% block class5 %} {% endblock class5 %}>#}
+{#							<i class="icon iconfont icon-geren"></i>#}
+{#							我的好友#}
+{#						</a>#}
+{#					</li>#}
+{#					<li>#}
+{#						<a href="#" {% block class6 %} {% endblock class6 %}>#}
+{#							<i class="icon iconfont icon-jilu"></i>#}
+{#							收藏的消息#}
+{#						</a>#}
+{#					</li>#}
+				</ul>
+			</div>
+			<div class="right">
+                {% block top %}
+				<div class="tap">
+					<span>查看消息</span>
+				</div>
+                {% endblock top %}
+				<div class="container">
+                    {% block container %}
+					<div class="no-doc">
+						<img src="../../static/message/images/left.jpg" width="200"/>
+						<p>左侧查看消息哦~</p>
+					</div>
+                    {% endblock container %}
+				</div>
+			</div>
+		</div>
+        {% else %}
+            <div class="row">
+                <div class="col-12">
+                <br>
+                <h5>您还没有登录哦</h5>
+                <h5>点击<a href='{% url "register" %}'>注册账号</a>加入我们或者</h5>
+                    <h5>点击<a href='{% url "login" %}'>登录</a>查看吧</h5>
+                <br>
+                </div>
+            </div>
+            <!-- if 语句在这里结束 -->
+        {% endif %}
+<script src="{% static 'dist/js/jquery.min.js' %}"></script>
+	<script src="{% static 'dist/js/jquery-ui.min.js' %}"></script>
+	<script>
+	  $.widget.bridge('uibutton', $.ui.button);
+	</script>
+	<!-- Bootstrap 3.3.6 -->
+	<script src="{% static 'dist/js/bootstrap.min.js' %}"></script>
+	<script src="{% static 'js/jquery-1.11.0.min.js'%}" type="text/javascript"></script>
+</div>
+
+<div class="backTop" id="backTop" style="display: none;"></div>
+
+{% block js %}{% endblock %}
+<script src="{% static 'js/jquery.js'%}"></script>
+<script src="{% static 'js/jquery_002.js'%}"></script>
+<script src="{% static 'js/wySlider.js'%}"></script>
+<script src="{% static 'js/common.js'%}"></script>
+<script src="{% static 'js/js.js'%}"></script>
+<script>
+    /*导航滑动特效*/
+    $(document).scroll(function () {
+        var top = $(document).scrollTop();
+        if (top > 480) {
+            $(".navbar-fixed-top").show();
+        }else{
+            $(".navbar-fixed-top").hide();
+        }
+    });
+</script>
+</body>
+</html>

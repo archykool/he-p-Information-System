@@ -1,0 +1,46 @@
+<!-- extends表明此页面继承自 refer.html 文件 -->
+{% extends "basepage.html" %} {% load staticfiles %}
+<!-- 写入 refer.html 中定义的 title -->
+{% block title %} 发布信息 {% endblock title %}
+<!-- 写入 refer.html 中定义的 content -->
+{% block content %}
+<!-- 写帖子表单 -->
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <br>
+            <!-- 提交帖子的表单 -->
+            <form method="post" action=".">
+                <!-- Django中需要POST数据的地方都必须有csrf_token -->
+                {% csrf_token %}
+                <!-- 帖子标题 -->
+                <div class="form-group">
+                    <!-- 标签 -->
+                    <label for="title">姓名</label>
+                    <!-- 文本框 -->
+                    <input type="text" class="form-control" id="name" name="name">
+                </div>
+                <!-- email -->
+                <div class="form-group">
+                    <label for="body">email</label>
+                    <!-- 文本区域 -->
+                    <input type="text" class="form-control" id="email" name="email" rows="12"></input>
+                </div>
+                <!-- 所属院校 -->
+                <div class="form-group">
+                    <label for="body">所属院校</label>
+                    <!-- 文本区域 -->
+                    <input type="text" class="form-control" id="faculty" name="faculty" rows="12"></input>
+                </div>
+                <div class="form-group">
+                    <label for="body">电话</label>
+                    <!-- 文本区域 -->
+                    <input type="text" class="form-control" id="tel" name="tel" rows="12"></input>
+                </div>
+                <!-- 提交按钮 -->
+                <button type="submit" class="btn btn-primary">完成</button>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock content %}

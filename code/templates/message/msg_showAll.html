@@ -1,0 +1,104 @@
+{% extends 'message/msg_index.html' %}
+{% load static %}
+{% block style %}
+<link rel="stylesheet" type="text/css" href="http://cdn.bootcss.com/font-awesome/4.6.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="{% static 'message/css/jquery.paginate.css' %}" />
+<link rel="stylesheet" href="{% static 'message/css/jquery.yhhDataTable.css'%}" />
+<style>
+    .btn-success{
+      background-color:#333;
+      border-color:#333;
+    }
+</style>
+{% endblock %}
+
+
+{% block class4 %}
+    class="active"
+{% endblock class4 %}
+
+{% block top %}
+    <div class="tap">
+        <span>留言列</span>
+    </div>
+{% endblock top %}
+
+{% block container %}
+<div class="col-md-2"><br><br>
+    <button class="btn btn-primary" onclick="window.location.href='{% url 'message:msg_add' %}'">添加留言</button><br><br>
+    <button class="btn btn-primary" onclick="window.location.href='{% url 'message:my_msg_list' %}'">我的留言</button>
+</div>
+<div class="col-md-9">
+    <div class="container">
+    <div class="row mt-2">
+        {% for message in msgs %}
+            <div class="col-4 mb-4">
+                <div class="card h-100">
+                    <h4 class="card-header">{{ message.title }}</h4>
+                    <a href="{% url 'message:user_msg_list' message.user%}">留言人：{{ message.user }}</a>
+                    <div class="card-body">
+                        <p class="card-text">{{ message.content|slice:'30' }}</p>
+                    </div>
+                    <div class="card-footer">
+                        <a href="{% url 'message:msg_detail' message.id %}" class="btn btn-primary">查看详情</a>
+                    </div>
+                    -----------------------
+                </div>
+            </div>
+        {% empty %}
+              暂无数据！
+        {% endfor %}
+    </div>
+</div>
+</div>
+    <div class="col-md-12" align="center">
+            <!-- 页码导航 -->
+            <div class="pagination row">
+              <div class="m-auto">
+                  <span class="step-links">
+                      <!-- 如果不是第一页，则显示上翻按钮 -->
+                      {% if msgs.has_previous %}
+                          <a href="?page=1" class="btn btn-success">
+                              &laquo; 1
+                          </a>
+                          <span>...</span>
+                          <a href="?page={{ msgs.previous_page_number }}"
+                             class="btn btn-secondary"
+                          >
+                              {{ msgs.previous_page_number }}
+                          </a>
+                      {% endif %}
+
+                      <!-- 当前页面 -->
+                      <span class="current btn btn-danger btn-lg">
+                          {{ msgs.number }}
+                      </span>
+
+                      <!-- 如果不是最末页，则显示下翻按钮 -->
+                      {% if msgs.has_next %}
+                          <a href="?page={{ msgs.next_page_number }}"
+                             class="btn btn-secondary"
+                          >
+                              {{ msgs.next_page_number }}
+                          </a>
+                          <span>...</span>
+                          <a href="?page={{ msgs.paginator.num_pages }}"
+                             class="btn btn-success"
+                          >
+                              {{ msgs.paginator.num_pages }} &raquo;
+                          </a>
+                      {% endif %}
+                  </span>
+              </div>
+            </div>
+          </div>
+{% endblock container %}
+
+{% block js %}
+<script type="text/javascript" src="{% static 'message/js/jquery.min.js' %}"></script>
+<script type="text/javascript" src="{% static 'message/js/jquery.paginate.js' %}"></script>
+<script type="text/javascript" src="{% static 'message/js/jquery.yhhDataTable.js' %}"></script>
+<script type="text/javascript" src="{% static 'message/js/showall.js' %}"></script>
+
+
+{% endblock %}

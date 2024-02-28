@@ -1,0 +1,42 @@
+{% extends 'message/msg_index.html' %}
+{% load static %}
+{% block class2 %}
+    class="active"
+{% endblock class2 %}
+
+{% block top %}
+    <div class="tap">
+        <span>我收到的消息</span>
+    </div>
+{% endblock top %}
+
+{% block container %}
+    <div class="container">
+        <form action="msggate/" method="get">
+            <label>
+                <span>接收方</span>
+                <input type="text" name="userC" /><br>
+            </label>
+            <input type="submit" value="获取留言">
+        </form>
+        <table border="1">
+        <thead>
+            <th>留言时间</th>
+            <th>留言来源</th>
+            <th>留言信息</th>
+        </thead>
+            <br>
+        <tbody>
+            {% for line in data %}
+            <tr>
+                <td>{{ line.time }}</td>
+                <td>{{ line.userA }}</td>
+                <td>{{ line.msg }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+
+    </div>
+{% endblock container %}

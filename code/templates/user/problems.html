@@ -1,0 +1,65 @@
+{% extends 'user/usercenter-base.html' %}
+{% load staticfiles %}
+{% block title %}
+    常见说明
+{% endblock %}
+
+ {% block custom_css %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/pageSwitch.min.css' %}">
+    {% endblock %}
+{% block custom_bread %}
+    <section>
+        <div class="wp">
+            <ul  class="crumbs">
+                <li><a href="{% url 'index' %}">首页</a>></li>
+                <li><a href="{% url 'users:user_info' %}">个人中心</a>></li>
+                <li>常见说明</li>
+            </ul>
+        </div>
+    </section>
+    {% endblock %}
+
+{% block custom_right_content %}
+    <div class="right" style="height:1000px;">
+		<div class="personal_des ">
+			<div class="head" style="border:1px solid #eaeaea;">
+				<h1>常见说明</h1>
+			</div>
+        <div style="width:100%;
+			background-color:#F7F4F7;
+			font-size: 25px;margin-bottom: 10px;height:50px;line-height: 50px;">
+		&nbsp;&nbsp;he!p信息服务系统客户服务<br>
+	</div>
+	<p style="font-family: serif;
+			font-size:17px;line-height: 30px;">
+		&nbsp;&nbsp;受理he!p信息服务系统客户问题，包括产品咨询、技术支持、投诉受理、建议反馈等。 <br>
+		&nbsp;&nbsp;客户服务热线:4006900000 <br>
+		&nbsp;&nbsp;EMAIL:sinacsc@vip.sina.com <br>
+		&nbsp;&nbsp;微博官方账号请@he!p信息服务系统客服 <br>
+		&nbsp;&nbsp;各产品详情请联系管理员<br>
+	</p>
+	<div style="width:100%;
+			background-color:#F7F4F7;
+			font-size: 25px;
+margin-bottom: 10px;margin-top:10px;height:50px;line-height: 50px;">
+		&nbsp;&nbsp;he!p信息服务系统广告销售
+	</div>
+	<p style="font-family: serif;
+			font-size: 17px;line-height: 30px;">
+		&nbsp;&nbsp;广告销售部 <br>
+		&nbsp;&nbsp;he!p信息服务系统广告官方服务微博：@he!p信息服务系统广告 http://weibo.com/sinaemarketing <br>
+		&nbsp;&nbsp;广告产品介绍请查看：http://emarketing.sina.com.cn  <br>
+		&nbsp;&nbsp;he!p信息服务系统广告及效果广告产品购买，请咨询热线：4008812813 <br>
+	</p>
+	<div style="width:100%;
+			background-color:#F7F4F7;
+			font-size: 25px;margin-bottom: 10px;margin-top:10px;height:50px;line-height: 50px;">
+		&nbsp;&nbsp;官方服务微博新闻热线<br>
+	</div>
+	<p style="font-family: serif;
+			font-size: 17px;line-height: 30px;">
+		&nbsp;&nbsp;给官方服务微博提供信息线索<br>
+		&nbsp;&nbsp;请联系管理员<br>
+	</p>
+		</div>
+{% endblock %}

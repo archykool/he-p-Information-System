@@ -1,0 +1,45 @@
+{% extends 'message/msg_index.html' %}
+{% load static %}
+{% block style %}
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <link rel="stylesheet" type="text/css" href="{% static 'message/css/systerm_msg_style.css' %}"/>
+{% endblock %}
+
+{% block script %}
+    <script type="text/javascript" src="{% static 'message/js/jquery-1.12.3.min.js' %}"></script>
+{% endblock %}
+
+{% block class1 %}
+    class="active"
+{% endblock %}
+
+{% block top %}
+    <div class="tap">
+        <span>系统公告</span>
+    </div>
+{% endblock top %}
+
+{% block container %}
+    <div class="container">
+    <div class="row mt-2">
+        {% for sys_msg in allmsgs %}
+            <div class="col-4 mb-4">
+                <div class="card h-100">
+                    <h4 class="card-header">{{ sys_msg.title }}</h4>
+                    <div class="card-body">
+                        <p class="card-text">{{ sys_msg.abstract|slice:'30' }}...</p>
+                    </div>
+                    <div class="card-footer">
+                        <a href="{% url 'systermmsg:sys_msg_detail' sys_msg.id %}" class="btn btn-primary">查看详情</a>
+                    </div>
+                    -----------------------
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock container %}
+
+{% block js %}
+{% endblock %}

@@ -1,0 +1,115 @@
+{% extends 'user/usercenter-base.html' %} {% load staticfiles %}
+
+
+{% block title %} 修改 {% endblock %}
+
+
+{% block custom_css %}
+    <link rel="stylesheet" href="{% static 'dist/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'dist/css/font-awesome.min.css' %}">
+    <link rel="stylesheet" href="{% static 'dist/css/ionicons.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/common.css' %}">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/pageSwitch.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/index.css'%}">
+<style>
+.btn-delete{
+    display: inline-block;
+    padding: 6px 12px;
+    font-size: 14px;
+    font-weight: 400;
+    color:#fff;
+    line-height: 1.42857143;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    -ms-touch-action: manipulation;
+    touch-action: manipulation;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    background-color:#ba2619;
+    margin-left:-200px;
+    margin-top:50px;
+}
+.btn-primary{
+    margin-left:-50px;
+    margin-top:50px;
+}
+</style>
+{% endblock %}
+
+
+{% block custom_bread %}
+    <section>
+        <div class="wp">
+            <ul  class="crumbs">
+                <li><a href="{% url 'index' %}">首页</a>></li>
+                <li><a href="{% url 'users:user_info' %}">个人中心</a>></li>
+                <li>我的帖子</li>
+            </ul>
+        </div>
+    </section>
+{% endblock %}
+
+
+{% block custom_right_content %}
+<div class="right">
+    <div class="container">
+    <div class="row">
+        <div class="col-8">
+            <br>
+            <form method="post" action=".">
+                {% csrf_token %}
+                <div class=" form-group">
+                    <label class="col-md-1" for="title">标题：</label>
+                    <div class="col-md-6">
+                    <input type="text" class="form-control" id="title" name="title" value="{{ seekhelp.title }}">
+                    </div>
+                </div>
+                <br>
+                <br>
+                <br>
+                <div class="form-group">
+                    <label class="col-md-1" for="details">详情：</label>
+                    <div class="col-md-6">
+                    <textarea type="text" class="form-control" id="details" name="details" rows="3">{{ seekhelp.details }}</textarea>
+                    </div>
+                </div>
+                <br>
+                <br>
+                <!-- 提交按钮 -->
+                <button type="submit" class="btn btn-primary">修改</button>
+                <a href="#" onclick="confirm_delete()"><div class="btn-delete">删除</div></a>
+
+            </form>
+        </div>
+    </div>
+</div>
+</div>
+{% endblock %}
+
+
+{% block custom_js %}
+<script>
+    // 删除文章的函数
+    function confirm_delete() {
+        // 调用layer弹窗组件
+        layer.open({
+            // 弹窗标题
+            title: "确认删除",
+            // 正文
+            content: "确认删除这篇文章吗？",
+            // 点击确定按钮后调用的回调函数
+            yes: function(index, layero) {
+                // 指定应当前往的 url
+                location.href='{% url "users:seekhelp_delete" seekhelp.id %}'
+            },
+        })
+    }
+</script>
+{% endblock %}

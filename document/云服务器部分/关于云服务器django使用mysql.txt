@@ -1,0 +1,9 @@
+云服务器因为同时具有python2.7和3.5两个版本，因此在使用数据库时存在很多可能产生歧义的点。
+首先需要在django主项目目录下的init.py中进行基础设置
+import pymysql
+
+pymysql.install_as_MySQLdb()
+
+这样设置的原因是在python3当中 原先python2适用的mysql组件变得不可用，因而需要重新安装名为PyMySQL的组件，通过pip进行安装
+pip install PyMySQL
+随后应当可以正常使用mysql

@@ -1,0 +1,31 @@
+{% extends 'user/usercenter-base.html' %}{% load staticfiles %}
+
+
+{% block title %}
+    个人信息
+{% endblock %}
+
+
+{% block custom_bread %}
+    <section>
+        <div class="wp">
+            <ul  class="crumbs">
+                <li><a href="{% url 'index' %}">首页</a>></li>
+                <li><a href="{% url 'users:user_info' %}">个人中心</a>></li>
+                <li>关于我们</li>
+            </ul>
+        </div>
+    </section>
+{% endblock %}
+
+
+{% block custom_right_content %}
+    <div class="right" style="height:auto;">
+		<div class="personal_des ">
+			<div class="head" style="height:auto;solid #eaeaea;">
+				<h1>&nbsp;&nbsp;现有信息交互平台有着平台繁多，信息来源驳杂，用户信息接受程度较差等缺点，新系统以字段搜索为核心，强调提高用户对信息的利用率。系统以大学校园为基础，以对大学校园中的所有信息做汇总为目标。在构想中，新系统规模成型以后，用户群体不需要像过去一样在所有信息平台上都发布求助信息。
+				<br>&nbsp;&nbsp;通过改进数据库的底层结构以及新增“搜索“功能，大大提高了同学获取信息以及得到反馈的效率。同时，学校的人力与设备费用的减少，处理速度的提高。如失物招领板块，不需要专人负责打理，所有功能都可以在平台上实现。再有，He!p校园信息平台整合里几大app所具有的功能，实现了“一站式”服务，这意味着管理信息服务的改进以及人员利用率的改进。</h1>
+			</div>
+		</div>
+	</div>
+{% endblock %}

@@ -1,0 +1,51 @@
+{% extends 'message/msg_index.html' %}
+
+{% block class4 %}
+    class="active"
+{% endblock class4 %}
+
+{% block top %}
+    <div class="tap">
+        <span>给管理员留言</span>
+    </div>
+{% endblock top %}
+
+{% block container %}
+    <script type="text/javascript">
+    function verify(){
+        //获取form标签元素
+        var form=document.getElementById('form');
+        //获取form下元素下所有input标签
+        var inputArray=form.getElementsByTagName("input");
+        var textareaArray=form.getElementsByTagName("textarea");
+        var inputArrayLength=inputArray.length;
+        //循环input元素数组
+        for(var int=0;int<inputArrayLength;int++){
+            //判断每个input元素的值是否为空
+            if(inputArray[int].value==null ||textareaArray[int].value==null ){
+                alert('输入的内容不能为空');
+                return false;
+            }
+        }
+        //如果所有Input标签的值都不为空的话
+        return true;
+    }
+    </script>
+    <form action="." method="post" class="smart-green" onsubmit="return verify();" id="form">
+        <h1>留言信息</h1>
+             <div class="error-msg">
+                 <label for="title">留言标题</label>
+                 <input id="title" type="text" name="title" class="error" placeholder="请输入您的标题"/>
+             </div>
+             <div class="error-msg">
+                 <label for="content">留言内容</label>
+                 <input id="content" type="text" name="content" class="error" placeholder="请输入您的留言"/>
+             </div>
+            <label>
+                <span>&nbsp;</span>
+                <input type="submit" class="button" value="提交"/>
+            </label>
+    {#避免提交表单时出现CSRF验证失败. 请求被中断.的403错误#}
+        {% csrf_token %}
+    </form>
+{% endblock container %}

@@ -1,0 +1,243 @@
+<!-- extends表明此页面继承自 basepage.html 文件 -->
+{% extends "basepage.html" %} {% load staticfiles %}
+
+
+<!-- 写入 basepage.html 中定义的 title -->
+{% block title %} 二手交易-发布 {% endblock title %}
+
+
+<!--写入 basepage.html 中定义的 css -->
+{% block css %}
+<style>
+    .button{
+        color:#fff;
+        background-color:#286090;
+        border-color:#204d74;
+        width:60px;
+        float:right;
+        margin-right:60px;
+        margin-bottom:20px;
+    }
+    .container{
+        width:90%;
+    }
+    .secondtitle{
+        font-size:23px;
+        font-weight:bold;
+        color:#323d42;
+    }
+    .aside-title::before{
+        display:inline-block;
+        margin-right:8px;content:'';
+        width:4px;height:22px;
+        vertical-align:-6px;
+        background-color:#ca0c16
+	}
+</style>
+
+<link rel="stylesheet" href="{% static 'css/float.css'%}">
+<link rel="stylesheet" href="{% static 'css/detail.css'%}">
+<link rel="stylesheet" href="{% static 'css/sandalstrap.min.css'%}">
+{% endblock %}
+
+
+<!-- 写入 basepage.html 中定义的 content -->
+{% block content %}
+<section class="content-header">
+      <ol class="breadcrumb">
+        <li><a href="{% url 'index' %}">主页</a></li>
+        <li><a href="{% url 'salebuy:salebuy_list' %}">二手交易</a></li>
+        <li class="active">发布</li>
+      </ol>
+</section>
+
+<!-- 写帖子表单 -->
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <div class="col-md-3">
+                <div class="aside-box" id="asideProfile" style="background:#ffffff;padding-left:5px;">
+                    <!-- <h3 class="aside-title">个人资料</h3> -->
+                    <div class="profile-intro d-flex" style="height:25%;">
+                        <div class="avatar-box d-flex justify-content-center flex-column">
+                            <img style="width:auto;height:auto;max-width:70%;max-height:70%;" class="avatar_pic" src="/media/{{ request.user.image }}">
+                        </div>
+                        <div class="user-info d-flex justify-content-center flex-column">
+                            <p class="name csdn-tracking-statistics tracking-click">
+                                <a href="" target="_blank">{{ user.nick_name }}</a><br>{{ user.username}}
+                            </p>
+                        </div>
+                    </div>
+                    <center><span style="display:block;width:90%;height:1px;background-color:#323d42;"></span></center>
+                    <br>
+                    <div class="data-info d-flex item-tiling" style="height:13%;">
+                        <dl class="text-center">
+                            <dt><a href="https://blog.csdn.net/weixin_43217710?t=1">原创</a></dt>
+                            <dd><span class="count"></span></dd>
+                        </dl>
+                        <dl class="text-center">
+                            <dt>喜欢</dt>
+                            <dd><span class="count"></span></dd>
+                        </dl>
+                        <dl class="text-center">
+                            <dt>评论</dt>
+                            <dd><span class="count"></span></dd>
+                        </dl>
+                    </div>
+                    <center><span style="display:block;width:90%;height:1px;background-color:#323d42;"></span></center>
+                    <br>
+                    <div class="aside-box" id="asideNewArticle">
+                        <div class="aside-title" style="font-size:20px;">失物寻物</div>
+                        <div class="aside-content">
+                            <ul class="inf_list clearfix csdn-tracking-statistics tracking-click" data-mod="popu_382">
+                                {% for lost in losts %}
+                                <li class="clearfix">
+                                    {{ lost.type }}·<a href="{% url 'lostfound:lostfound_detail' ad.id %}">{{ lost.title }}</a>
+                                </li>
+                                {% empty %}
+                                暂时没有发布过任何信息
+                                {% endfor %}
+                            </ul>
+                        </div>
+                        <br>
+                        <br>
+                        <div class="aside-title" style="font-size:20px;">二手交易</div>
+                        <div class="aside-content">
+                            <ul class="inf_list clearfix csdn-tracking-statistics tracking-click" data-mod="popu_382">
+                                {% for sale in sales %}
+                                <li class="clearfix">
+                                    {{ sale.type }}·<a href="{% url 'salebuy:salebuy_detail' sale.id %}">{{ sale.title }}</a>
+                                </li>
+                                {% empty %}
+                                暂时没有发布过任何信息
+                                {% endfor %}
+                            </ul>
+                        </div>
+                        <br>
+                        <br>
+                        <div class="aside-title" style="font-size:20px;">广告兼职</div>
+                        <div class="aside-content">
+                            <ul class="inf_list clearfix csdn-tracking-statistics tracking-click" data-mod="popu_382">
+                                {% for ad in ads %}
+                                <li class="clearfix">
+                                    <a href="{% url 'ad:ad_detail' ad.id %}">{{ ad.title }}</a>
+                                </li>
+                                {% empty %}
+                                暂时没有发布过任何信息
+                                {% endfor %}
+                            </ul>
+                        </div>
+                        <br>
+                        <br>
+                        <div class="aside-title" style="font-size:20px;">信息求助</div>
+                        <div class="aside-content">
+                            <ul class="inf_list clearfix csdn-tracking-statistics tracking-click" data-mod="popu_382">
+                                {% for seek in seeks %}
+                                <li class="clearfix">
+                                    <a href="{% url 'seekhelp:seekhelp_detail' ad.id %}">{{ seek.title }}</a>
+                                </li>
+                                {% empty %}
+                                暂时没有发布过任何信息
+                                {% endfor %}
+                            </ul>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-9" style="background:#ffffff;">
+                <div class="secondtitle">
+                    <br>
+                    <center>发布广告兼职内容</center>
+                </div>
+                <br>
+                <br>
+                <span style="display:block;width:90%;height:1px;background-color:#323d42;"></span>
+                <div class="col-md-8">
+                <form method="post" action="." enctype="multipart/form-data">
+                    <!-- Django中需要POST数据的地方都必须有csrf_token -->
+                    {% csrf_token %}
+                    <br>
+                    <br>
+                    <div class="form-group">
+                        <label class="col-md-2" for="title">标题：</label>
+                        <div class="col-md-10">
+                            <input class="form-control" type="text" id="title" name="title" placeholder="请输入标题" required="required">
+                        </div>
+                    </div>
+                    <br>
+                    <br>
+                    <div class="form-group">
+                        <label class="col-md-2 control-label" for="type">类型：</label>
+                        <div class="col-md-10">
+                            <select class="form-control" id="type" name="type">
+                                <option value="求购">求购</option>
+                                <option value="卖出">卖出</option>
+                            </select>
+                        </div>
+                    </div>
+                    <br>
+                    <br>
+                    <div class="form-group">
+                        <label class="col-md-2 control-label" for="location">地点：</label>
+                        <div class="col-md-10">
+                            <select class="form-control" id="location" name="location">
+                                <option value="望江">望江</option>
+                                <option value="江安">江安</option>
+                                <option value="华西">华西</option>
+                            </select>
+                        </div>
+                    </div>
+                    <br>
+                    <br>
+                    <div class="form-group">
+                        <label class="col-md-2" for="price">价格：</label>
+                        <div class="col-md-10">
+                            <input class="form-control" type="text" id="price" name="price" placeholder="请填写希望的价格￥" required="required">
+                        </div>
+                    </div>
+                    <br>
+                    <br>
+                    <div class="form-group">
+                        <label class="col-md-2 control-label" for="details">详情：</label>
+                        <div class="col-md-10">
+                            <textarea class="form-control" type="text" id="details" name="details" rows="3" placeholder="请填写更详细的信息"></textarea>
+                        </div>
+                    </div>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <div class="form-group">
+                        <label class="col-md-2 coontrol-label" for="img">图片：</label>
+                        <div class="col-md-10">
+                            <input type="file" id="img" name="img" placeholder="请上传图片">
+                        </div>
+                    </div>
+                    <br>
+                    <br>
+                    <!-- 提交按钮 -->
+                    <button type="submit" class="button">完成</button>
+                </form>
+                </div>
+                <div class="col-md-1">
+                    <div class="box">
+                      <ul>
+                          <br>
+                          <br>
+                          <br>
+                          <br>
+                        <li class="weixin">
+                          <div class="weixin-logo"></div>
+                        </li>
+                        <li class="idea"></li>
+                      </ul>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+</div>
+{% endblock content %}

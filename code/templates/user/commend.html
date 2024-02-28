@@ -1,0 +1,54 @@
+{% extends 'user/usercenter-base.html' %}
+{% load staticfiles %}
+{% block title %}
+    个人信息
+{% endblock %}
+
+
+{% block custom_css %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/pageSwitch.min.css' %}">
+{% endblock %}
+
+
+{% block custom_bread %}
+    <section>
+        <div class="wp">
+            <ul  class="crumbs">
+                <li><a href="{% url 'index' %}">首页</a>></li>
+                <li><a href="{% url 'users:user_info' %}">个人中心</a>></li>
+                <li>我的推荐</li>
+            </ul>
+        </div>
+    </section>
+{% endblock %}
+
+{% block custom_right_content %}
+    <div class="right" style="height:auto;">
+		<div class="personal_des ">
+			<div class="head" style="border:1px solid #eaeaea;">
+				<h1>我的推荐</h1>
+			</div>
+            <div id="container">
+                <div class="sections">
+                    <div class="section" id="section0" style="background-image: url('{% static 'images/图片1.png' %}')"></div>
+                    <div class="section" id="section1" style="background-image: url('{% static 'images/图片2.png' %}')"></div>
+                    <div class="section" id="section2" style="background-image: url('{% static 'images/图片3.png' %}')"></div>
+                    <div class="section" id="section3" style="background-image: url('{% static 'images/图片4.png' %}')"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="{% static 'js/pageSwitch.min.js' %}" type="text/javascript"></script>
+    <script src="{% static 'js/jquery-1.11.0.min.js' %}" type="text/javascript"></script>
+    <script src="{% static 'js/pageSwitch.js' %}" type="text/javascript"></script>
+
+<script>
+    $("#container").PageSwitch({
+        direction:'horizontal',
+        easing:'ease-in',
+        duration:1000,
+        autoPlay:true,
+        loop:'false'
+    });</script>
+
+{% endblock %}

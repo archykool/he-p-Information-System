@@ -1,0 +1,144 @@
+*{font-family: "microsoft yahei";box-sizing: border-box;padding: 0;margin: 0;color: inherit;}
+body{background: #f1f1f1;}
+img{border: none;}
+ul{list-style: none;}
+a{text-decoration: none;}
+.w1200{width: 1200px;height: auto;margin: 0 auto;overflow: hidden;font-size: 16px;}
+.header{width: 100%;height: auto;overflow: hidden;margin-bottom: 20px;}
+.header .bar{background:#62ab00;height: 50px;line-height: 50px;color: #fff;}
+.header .bar .l{float: left;}
+.header .bar .l font{font-size: 22px;border-left: 1px solid #fff;margin-left: 20px;padding-left: 20px;}
+.header .bar .r{float: right;}
+.header .bar .r i{padding-right: 10px;}
+.header .user-info{height: 100px;width: 100%;background: url(images/user_info_bg.jpg) center center no-repeat;background-size: cover;}
+.header .user-info .user-headface{float: left;width: 75px;height: 75px;overflow: hidden;border-radius: 50%;margin-top: 12px;}
+.header .user-info .user-headface img{width: 100%;height: 100%;}
+.header .user-info .user-account{float: left;margin-top: 25px;padding-left: 20px;color: #666;}
+.header .user-info .user-account .tip{margin-bottom: 5px;}
+.header .user-info .user-account .account span{font-size: 13px;padding-right: 20px;}
+.header .user-info .user-modify{float: right;margin-top: 30px;width: 110px;height: 40px;text-align: center;line-height: 40px;color: #fff;background: #798285;border-radius: 5px;}
+.main .left{float: left;width: 200px;height: auto;overflow: hidden;margin-right: 20px;margin-top: 80px;background: #fff;}
+.main .left ul li{width: 100%;height: 50px;line-height: 50px;color: #666666;}
+.main .left ul li a{display: block;width: 100%;height: 100%;padding-left: 20px;}
+.main .left ul li a i{font-size: 20px;padding-right: 5px;}
+.main .left ul li a.active{border-left: 3px solid #798285;background: #f3f7ed;color: #798285;}
+.main .left ul li a:hover{border-left: 3px solid #798285;background: #f3f7ed;color: #798285;}
+.main .right{float: left;width: 980px;height: auto;overflow: hidden;margin-top: 80px;}
+.main .right .tap{width: 100%;height: 40px;border-bottom: 2px solid #798285;background: #f9fafa;}
+.main .right .tap span{display: block;width: 128px;height: 100%;line-height: 40px;color: #fff;text-align: center;background: #798285;}
+.main .right .container{width: 100%;height: auto;overflow: hidden;background: #fff;}
+.main .right .container .no-doc{width: 100%;height: 350px;text-align: center;color: #999;font-size: 13px;}
+.main .right .container .no-doc img{padding-top: 80px;}
+
+.smart-green {
+        margin-left: auto;
+        margin-right: auto;
+        max-width: 500px;
+        background: #F8F8F8;
+        padding: 30px 30px 20px 30px;
+        font: 12px Arial, Helvetica, sans-serif;
+        color: #666;
+        border-radius: 5px;
+        -webkit-border-radius: 5px;
+        -moz-border-radius: 5px;
+    }
+
+    .smart-green h1 {
+        font: 24px "Trebuchet MS", Arial, Helvetica, sans-serif;
+        padding: 20px 0px 20px 40px;
+        display: block;
+        margin: -30px -30px 10px -30px;
+        color: #FFF;
+        background: #798285;
+        text-shadow: 1px 1px 1px #949494;
+        border-radius: 5px 5px 0px 0px;
+        -webkit-border-radius: 5px 5px 0px 0px;
+        -moz-border-radius: 5px 5px 0px 0px;
+        border-bottom: 1px solid #798285;
+    }
+
+    .smart-green h1 > span {
+        display: block;
+        font-size: 11px;
+        color: #FFF;
+    }
+
+    .smart-green label {
+        display: block;
+        margin: 0px 0px 5px;
+    }
+
+    .smart-green label > span {
+        float: left;
+        margin-top: 10px;
+        color: #5E5E5E;
+    }
+
+    .smart-green input[type="text"], .smart-green input[type="email"], .smart-green textarea, .smart-green select {
+        color: #555;
+        height: 30px;
+        line-height: 15px;
+        width: 100%;
+        padding: 0px 0px 0px 10px;
+        margin-top: 2px;
+        border: 1px solid #E5E5E5;
+        background: #FBFBFB;
+        outline: 0;
+        -webkit-box-shadow: inset 1px 1px 2px rgba(238, 238, 238, 0.2);
+        box-shadow: inset 1px 1px 2px rgba(238, 238, 238, 0.2);
+        font: normal 14px/14px Arial, Helvetica, sans-serif;
+    }
+
+    .smart-green textarea {
+        height: 100px;
+        padding-top: 10px;
+    }
+
+
+    .smart-green .button {
+        background-color: #798285;
+        border-radius: 5px;
+        -webkit-border-radius: 5px;
+        -moz-border-border-radius: 5px;
+        border: none;
+        padding: 10px 25px 10px 25px;
+        color: #FFF;
+        text-shadow: 1px 1px 1px #949494;
+    }
+
+    .smart-green .button:hover {
+        background-color: #798285;
+    }
+
+    .error-msg{
+        color: rgba(121, 130, 133, 0.84);
+        margin-top: 10px;
+    }
+    .success-msg{
+        color: #25851a;
+        margin-top: 10px;
+        margin-bottom: 10px;
+    }
+    .top-img{
+            background-color: #9a97ac;
+            height:20px;
+            top: 0px;
+            position: fixed;
+            width: 100%;
+        }
+        .p1{
+            padding-left: 20px;
+        }
+        .p2{
+            padding-left: 150px;
+            margin-top: -60px;
+            font-family: cursive;
+            font-size:24px;
+            color: white;
+        }
+        table.msglist{
+            border:3 solid black;
+            border-collapse:collapse}
+
+        table.msglist th,table.msglist td{
+            border:2 solid black}

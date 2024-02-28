@@ -1,0 +1,142 @@
+{% extends 'basepage.html' %}
+{% load staticfiles %}
+{% block title %}用户信息{% endblock %}
+
+{% block css %}
+<style>
+    .basicinfo{
+        font-size:14px;
+        color:#7c7c7c;
+    }
+    .info{
+        height:80%;
+        padding-bottom:20%;
+        fonr-color:#333;
+        background-color:#dff0d8;
+    }
+    .aside-title::before{
+        display:inline-block;
+        margin-right:8px;content:'';
+        width:4px;height:22px;
+        vertical-align:-6px;
+        background-color:#ca0c16
+	}
+</style>
+
+<link rel="stylesheet" href="{% static 'css/detail.css'%}">
+<link rel="stylesheet" href="{% static 'css/sandalstrap.min.css'%}">
+<link rel="stylesheet" href="{% static 'css/float.css'%}">
+<!-- DataTables -->
+  <!--<link rel="stylesheet" href="{% static 'plugins/datatables/dataTables.bootstrap.css' %}">-->
+  <!-- Theme style -->
+  <link rel="stylesheet" type="text/css" href="{% static 'dist/css/jquery.dataTables.min.css' %}">
+  <!-- AdminLTE Skins. Choose a skin from the css/skins
+       folder instead of downloading all of them to reduce the load. -->
+  <link rel="stylesheet" href="{% static 'dist/css/skins/_all-skins.min.css' %}">
+
+{% endblock %}
+
+{% block content %}
+
+    <div class="row">
+
+        <div class="col-xs-2 col-md-offset-1">
+    <!-- Content Header (Page header) -->
+    <!-- Main content -->
+            <section class="content-header ">
+                <div class="row">
+                    <div class="col-xs-10 col-md-offset-1">
+                        <div class=service>
+                            <div class="service_header">
+                                <h4 class="service_title"></h4>
+                            </div>
+                        </div>
+                        <div class=service>
+                            <div class="service_header" >
+                            <br>
+                                <h4 class="service_title">我的信息</h4>
+
+                                {% if user_informs %}
+                                    {% for user_inform in user_informs %}
+                                    <ul>
+                                    <li><img width="100" height="100" class="js-img-show" id="avatarShow" src="{{ MEDIA_URL }}{{ user_inform.image }}"/></li>
+                                    <li> 姓名：{{ user_inform.username }} </li>
+                                    <li> email： {{ user_inform.email }}</li>
+                                    <li> 性别：{{ user_inform.gender }} </li>
+                                    <li> <a href="#">会话</a></li>
+                                    </ul>
+                                    {% empty %}
+                                            <tr>没有数据！</tr>
+                                    {% endfor %}
+                                {% else %}
+                                    <p>请先登录 ！
+                                {% endif %}
+                            </div>
+                        </div>
+
+                    <center><span style="display:block;width:90%;height:1px;background-color:#323d42;"></span></center>
+
+                    <div class="data-info d-flex item-tiling" style="height:13%;">
+                        <dl class="text-center">
+                            <dt><a href="">原创</a></dt>
+                            <dd><span class="count"></span></dd>
+                        </dl>
+                        <dl class="text-center">
+                            <dt>喜欢</dt>
+                            <dd><span class="count"></span></dd>
+                        </dl>
+                        <dl class="text-center">
+                            <dt>评论</dt>
+                            <dd><span class="count"></span></dd>
+                        </dl>
+                    </div>
+                    </div>
+
+                </div>
+        <!-- SiteSearch Google -->
+                <br>
+            <div class="search-block " background-color="#f5f5f5">
+                <form action="http://www.baidu.com/baidu">
+                   <input type=text name=word value="输入您想搜索的内容">
+                   <input type="submit" value="He！p 搜索">
+                   <input name=tn type=hidden value="bds">
+                   <input name=cl type=hidden value="3">
+                   <input name=ct type=hidden value="2097152">
+                   <input name=si type=hidden value="118.24.0.218:8666">
+               </form>
+            </div>
+             </section>
+<!-- SiteSearch Google -->
+        </div>
+    <div class="col-xs-8 ">
+        <!--预留页面具体的位置-->
+	{% block news %}
+    {% endblock news %}
+    </div>
+        <!-- /.box-body -->
+
+    </div>
+      <!-- /.box -->
+    </div>
+    <!-- /.col -->
+    </div>
+    <!-- /.row -->
+
+
+{% endblock %}
+
+{% block js %}
+    <!-- DataTables -->
+    <!--<script src="{% static 'dist/js/table.js' %}" type="text/javascript"></script>-->
+    <script src="{% static 'dist/js/jquery.dataTables.min.js' %}"></script>
+    <!--<script src="{% static 'plugins/datatables/dataTables.bootstrap.min.js' %}"></script>-->
+    <!-- SlimScroll -->
+    <script src="{% static 'dist/js/jquery.slimscroll.min.js' %}"></script>
+    <!-- FastClick -->
+    <script src="{% static 'dist/js/fastclick.js' %}"></script>
+    <!-- AdminLTE App -->
+    <script src="{% static 'dist/js/app.min.js' %}"></script>
+    <!-- AdminLTE for demo purposes -->
+    <script src="{% static 'dist/js/demo.js' %}"></script>
+
+{% endblock %}

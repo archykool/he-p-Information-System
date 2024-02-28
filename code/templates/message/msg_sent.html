@@ -1,0 +1,35 @@
+{% extends 'message/msg_index.html' %}
+{% load static %}
+{% block class3 %}
+    class="active"
+{% endblock class3 %}
+
+{% block top %}
+    <div class="tap">
+        <span>发送消息</span>
+    </div>
+{% endblock top %}
+
+{% block container %}
+    <div class="container">
+        <form action="msggate" method="post">
+        <!--添加本语句在表单中，可以防止csrf攻击-->
+            {% csrf_token%}
+            <label>
+                <span>发送方</span>
+                <input type="text" name="userA" placeholder="请输入您的用户名"/> <br>
+            </label>
+            <label>
+                <span>接收方</span>
+                <input type="text" name="userB" placeholder="请输入您想要联系的人的用户名"/> <br>
+            </label>
+            <label>
+                <span>内容 :</span>
+                <textarea name="msg"  placeholder="请输入您的消息"></textarea>
+                <div class="error-msg"></div>
+            </label>
+            <input type="submit" value="提交">
+        </form>
+
+    </div>
+{% endblock container %}

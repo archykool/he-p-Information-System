@@ -1,0 +1,31 @@
+
+{% extends "message/msg_index.html" %}
+{% load static %}
+
+{% block class4 %}
+    class="active"
+{% endblock class4 %}
+
+{% block top %}
+    <div class="tap">
+        <span>留言详情</span>
+    </div>
+{% endblock top %}
+
+{% block container %}
+    <div class="row">
+        <h1 class="col-12 mt-4 mb-4">留言标题：{{ message.title }}</h1>
+        留言人：{{ message.user }}
+        <br>
+        留言时间：{{ message.datetime }}
+{#         · <a href="#" onclick="confirm_delete()">删除文章</a>#}
+{#         · <a href="{% url "article:article_update" article.id %}">编辑文章</a>#}
+        </div>
+        <!-- 留言正文 -->
+        <div class="col-12">
+            <p>{{ message.content|safe }}</p>
+        </div>
+    </div>
+{% endblock container %}
+
+

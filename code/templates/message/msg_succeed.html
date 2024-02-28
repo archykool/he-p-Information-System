@@ -1,0 +1,21 @@
+{% extends 'message/msg_index.html' %}
+{% load static %}
+{% block class4 %}
+    class="active"
+{% endblock class4 %}
+
+{% block top %}
+    <div class="tap">
+        <span>操作成功</span>
+    </div>
+{% endblock top %}
+
+{% block container %}
+    <div class="no-doc">
+	    <img src="{% static 'message/images/succeed.jpg' %}" width="400"/>
+	    <p>( •̀ ω •́ )y操作成功~</p>
+	</div>
+    <div >
+        <a href="{% url 'message:msg_showAll' %}">返回所有留言></a>
+    </div>
+{% endblock container %}

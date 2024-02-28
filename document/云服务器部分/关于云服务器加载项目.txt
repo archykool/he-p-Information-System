@@ -1,0 +1,13 @@
+//该文档仅适用于本项目
+使用xftp上传项目
+使用xshell登录服务器
+输入指令：workon mis 进入vitualenv虚拟环境
+进入项目根目录（即上传项目的文件夹,manage.py的根目录）
+进入项目子目录（即settings.py的父目录）对settings.py进行修改
+把settings.py中的
+ALLOWED_HOSTS = []
+修改为
+ALLOWED_HOSTS = ['*']
+
+输入指令：python3 manage.py runserver 0.0.0.0:8888(服务器端口全开，可任意设置)
+访问118.24.0.218：8888（上一条中设置端口数）

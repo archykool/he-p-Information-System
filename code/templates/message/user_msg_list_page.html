@@ -1,0 +1,31 @@
+{% extends 'message/msg_index.html' %}
+
+{% block class4 %}
+    class="active"
+{% endblock class4 %}
+
+{% block top %}
+    <div class="tap">
+        <span>该用户的所有留言</span>
+    </div>
+{% endblock top %}
+
+{% block container %}
+    <div class="row mt-2">
+        {% for user_msg in user_msgs %}
+            <div class="col-4 mb-4">
+                <div class="card h-100">
+                    <h4 class="card-header">{{user_msg.title }}</h4>
+                    <a href="{% url 'message:user_msg_list' user_msg.user%}">留言人：{{ user_msg.user }}</a>
+                    <div class="card-body">
+                        <p class="card-text">{{ user_msg.content|slice:'30' }}...</p>
+                    </div>
+                    <div class="card-footer">
+                        <a href="{% url 'message:msg_detail' user_msg.id %}" class="btn btn-primary">查看详情</a>
+                    </div>
+                    -------------------------------------------------------------------------------------------------------------
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock container %}
